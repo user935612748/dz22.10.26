@@ -1,47 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="24dp">
+    android:padding="24dp"
+    tools:context=".LoginFragment"
+    tools:theme="@style/Theme.Dz221026">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/loginLayout"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/login">
+        app:layout_constraintBottom_toTopOf="@id/passwordLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintWidth_max="400dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/loginEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text" />
+            android:minHeight="48dp"
+            android:hint="@string/login"
+            android:autofillHints="username"
+            android:inputType="text"
+            android:textColor="?attr/colorOnSurface"
+            android:textColorHint="?attr/colorOnSurfaceVariant" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordLayout"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="@string/password"
-        app:endIconMode="password_toggle">
+        app:endIconMode="password_toggle"
+        app:layout_constraintBottom_toTopOf="@id/loginButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loginLayout"
+        app:layout_constraintWidth_max="400dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passwordEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword" />
+            android:minHeight="48dp"
+            android:hint="@string/password"
+            android:autofillHints="password"
+            android:inputType="textPassword"
+            android:textColor="?attr/colorOnSurface"
+            android:textColorHint="?attr/colorOnSurfaceVariant" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/loginButton"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:hint="@string/log_in" />
+        android:text="@string/log_in"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/passwordLayout"
+        app:layout_constraintWidth_max="400dp" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

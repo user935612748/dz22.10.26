@@ -14,7 +14,8 @@ class LoginFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
@@ -25,8 +26,32 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.loginButton.setOnClickListener {
-            val login = binding.loginEdit.text.toString()
-            Toast.makeText(requireContext(), "Привет, $login!", Toast.LENGTH_SHORT).show()
+            val login = binding.loginEdit.text?.toString()?.trim().orEmpty()
+            val password = binding.passwordEdit.text?.toString()?.trim().orEmpty()
+
+            var isValid = true
+
+            if (login.isEmpty()) {
+                binding.loginLayout.error = getString(R.string.error_empty_field)
+                isValid = false
+            } else {
+                binding.loginLayout.error = null
+            }
+
+            if (password.isEmpty()) {
+                binding.passwordLayout.error = getString(R.string.error_empty_field)
+                isValid = false
+            } else {
+                binding.passwordLayout.error = null
+            }
+
+            if (isValid) {
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.welcome_message, login),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
     }
 
