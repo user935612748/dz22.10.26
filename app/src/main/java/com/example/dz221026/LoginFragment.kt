@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.dz221026.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
@@ -16,7 +17,7 @@ class LoginFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
@@ -49,8 +50,13 @@ class LoginFragment : Fragment() {
                 Toast.makeText(
                     requireContext(),
                     getString(R.string.welcome_message, login),
-                    Toast.LENGTH_SHORT
+                    Toast.LENGTH_SHORT,
                 ).show()
+
+                val bundle = Bundle().apply {
+                    putString("username", login)
+                }
+                findNavController().navigate(R.id.action_loginFragment_to_homeFragment, bundle)
             }
         }
     }
