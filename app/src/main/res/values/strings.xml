@@ -1,18 +1,25 @@
 <resources>
     <string name="app_name">dz22.10.26</string>
 
+    <!-- Login Screen -->
     <string name="login">Логин</string>
     <string name="password">Пароль</string>
     <string name="log_in">Войти</string>
     <string name="welcome_message">Привет, %1$s!</string>
     <string name="error_empty_field">Поле не должно быть пустым</string>
 
-    <string name="home_title">Главный экран</string>
+    <!-- Quiz Screen (Home) -->
+    <string name="home_title">Тестирование по Kotlin</string>
     <string name="welcome_user">Добро пожаловать, %1$s!</string>
-    <string name="btn_go_to_details">Перейти к деталям</string>
+    <string name="user_prefix">Пользователь: %1$s</string>
+    <string name="question_progress">Вопрос %1$d из %2$d</string>
+    <string name="btn_next_question">Следующий вопрос</string>
+    <string name="btn_finish_quiz">Завершить тест</string>
+    <string name="error_select_answer">Пожалуйста, выберите ответ</string>
     <string name="btn_logout">Выйти</string>
 
-    <string name="detail_title">Экран деталей профиля</string>
-    <string name="detail_description">Третий фрагмент приложения.</string>
-    <string name="btn_back_home">Назад на главный экран</string>
+    <!-- Detail Screen (Results) -->
+    <string name="result_title">Результаты тестирования</string>
+    <string name="result_score">Вы верно ответили на %1$d из %2$d вопросов!</string>
+    <string name="btn_restart_quiz">Пройти тест заново</string>
 </resources>

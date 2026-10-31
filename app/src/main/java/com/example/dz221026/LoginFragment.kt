@@ -1,10 +1,12 @@
 package com.example.dz221026
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.edit
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.dz221026.databinding.FragmentLoginBinding
@@ -13,6 +15,12 @@ class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
+
+    companion object {
+        private const val PREFS_NAME = "login_prefs"
+        private const val KEY_LOGIN = "key_login"
+        private const val KEY_PASSWORD = "key_password"
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,6 +33,17 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val prefs = requireContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val savedLogin = prefs.getString(KEY_LOGIN, "")
+        val savedPassword = prefs.getString(KEY_PASSWORD, "")
+
+        if (!savedLogin.isNullOrEmpty()) {
+            binding.loginEdit.setText(savedLogin)
+        }
+        if (!savedPassword.isNullOrEmpty()) {
+            binding.passwordEdit.setText(savedPassword)
+        }
 
         binding.loginButton.setOnClickListener {
             val login = binding.loginEdit.text?.toString()?.trim().orEmpty()
@@ -47,6 +66,12 @@ class LoginFragment : Fragment() {
             }
 
             if (isValid) {
+
+                prefs.edit {
+                    putString(KEY_LOGIN, login)
+                    putString(KEY_PASSWORD, password)
+                }
+
                 Toast.makeText(
                     requireContext(),
                     getString(R.string.welcome_message, login),

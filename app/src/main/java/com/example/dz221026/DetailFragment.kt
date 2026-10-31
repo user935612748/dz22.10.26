@@ -25,8 +25,28 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.backButton.setOnClickListener {
-            findNavController().navigateUp()
+        val username = arguments?.getString("username") ?: getString(R.string.login)
+        val score = arguments?.getInt("score", 0) ?: 0
+        val total = arguments?.getInt("total", 5) ?: 5
+
+        binding.userText.text = getString(R.string.user_prefix, username)
+        binding.scoreText.text = getString(R.string.result_score, score, total)
+
+        binding.feedbackText.text = when {
+            score == total -> "Отличный результат!"
+            score >= 3 -> "Тест пройден!"
+            else -> "Попробуйте ещё раз, чтобы улучшить результат!"
+        }
+
+        binding.restartButton.setOnClickListener {
+            val bundle = Bundle().apply {
+                putString("username", username)
+            }
+            findNavController().navigate(R.id.action_detailFragment_to_homeFragment, bundle)
+        }
+
+        binding.logoutButton.setOnClickListener {
+            findNavController().navigate(R.id.action_detailFragment_to_loginFragment)
         }
     }
 
